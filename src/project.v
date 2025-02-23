@@ -17,7 +17,7 @@ module tt_um_group1 (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  for (i = 10; i >= 10; i = i - 1) begin
+    for (i = 7; i >= 0; i = i - 1) begin
         if (ui_in[i]) begin 
             assign uo_out = i;
         end    
