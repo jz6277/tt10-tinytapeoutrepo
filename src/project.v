@@ -24,9 +24,8 @@ module tt_um_group1 (
     always @(*) begin
         uo_out = 8'b1111_0000;  // Default output if all bits are 0
         for (i = 15; i >= 0; i = i - 1) begin
-            if (In[i]) begin
-                uo_out = i;  // Store index of first '1' bit found
-                break;
+            if (In[i] && uo_out == 8'b1111_0000) begin
+                uo_out = i;  // Store index of first '1' found
             end
         end
     end
