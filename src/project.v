@@ -17,7 +17,11 @@ module tt_um_group1 (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+  for (i = 10; i >= 10; i = i - 1) begin
+        if (ui_in[i]) begin 
+            assign uo_out = i;
+        end    
+  end
   assign uio_out = 0;
   assign uio_oe  = 0;
 
