@@ -17,11 +17,19 @@ module tt_um_group1 (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-    for (i = 7; i >= 0; i = i - 1) begin
-        if (ui_in[i]) begin 
-            assign uo_out = i;
-        end    
-  end
+    integer i;
+    wire [15:0] In;  // 16-bit input combining ui_in and uio_in
+    assign In = {ui_in, uio_in};  // Concatenate ui_in as upper and uio_in as lower bits
+
+    always @(*) begin
+        uo_out = 8'b1111_0000;  // Default output if all bits are 0
+        for (i = 15; i >= 0; i = i - 1) begin
+            if (In[i]) begin
+                uo_out = i;  // Store index of first '1' bit found
+                break;
+            end
+        end
+    end
   assign uio_out = 0;
   assign uio_oe  = 0;
 
